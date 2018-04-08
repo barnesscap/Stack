@@ -1,19 +1,21 @@
 public class Main {
 
     public static void main(String[] args) {
-        Worker workerOne = new Worker("Anna","Samsung");
-        Worker workerTwo = new Worker("Bob","Apple");
-        Worker workerThree = new Worker("Anna","Samsung");
+        Worker workerOne = new Worker("Anna", "Samsung");
+        Worker workerTwo = new Worker("Bob", "Apple");
+        Worker workerThree = new Worker("Anna", "Samsung");
 
-        Student studentOne = new Student("Kevin","History");
-        Student studentTwo = new Student("Bill","Art");
-        Student studentThree = new Student("John","Technology");
+        Student studentOne = new Student("Kevin", "History");
+        Student studentTwo = new Student("Bill", "Art");
+        Student studentThree = new Student("John", "Technology");
 
-        Stack stackOne = new Stack(5);
+        BlackList<Human> blackList = new BlackList<>();
+
+        Stack stackOne = new Stack(5, blackList);
 
         //добавляем обьекты в ЧС
-        stackOne.addToBL(workerOne);
-        stackOne.addToBL(studentTwo);
+        blackList.addToBL(workerOne);
+        blackList.addToBL(studentTwo);
 
         //Добавляем обьекты в стэк
         stackOne.addElement(workerOne);
@@ -25,14 +27,17 @@ public class Main {
 
         //Чтение верхнего обьекта из стэка
         System.out.println();
+        System.out.println("Чтение верхнего обьекта из стэка");
         System.out.println(stackOne.readTop());
 
         //Чтение и удаление обьекта из стэка
         System.out.println();
+        System.out.println("Чтение и удаление обьекта из стэка");
         System.out.println(stackOne.readAndDeleteTop());
 
         //Чтение верхнего обьекта из стэка
         System.out.println();
+        System.out.println("Чтение верхнего обьекта из стэка");
         System.out.println(stackOne.readTop());
     }
 }

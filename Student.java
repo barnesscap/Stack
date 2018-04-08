@@ -1,18 +1,12 @@
-public class Student {
-    private String name;
+public class Student extends Human {
     private String faculty;
 
+    public Student() {
+    }
+
     public Student(String name, String faculty) {
-        this.name = name;
+        super(name);
         this.faculty = faculty;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getFaculty() {
@@ -27,25 +21,25 @@ public class Student {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
         Student student = (Student) o;
 
-        if (!name.equals(student.name)) return false;
-        return faculty.equals(student.faculty);
+        return faculty != null ? faculty.equals(student.faculty) : student.faculty == null;
     }
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + faculty.hashCode();
+        int result = super.hashCode();
+        result = 31 * result + (faculty != null ? faculty.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "Student{" +
-                "name='" + name + '\'' +
-                ", faculty='" + faculty + '\'' +
+                "name='" + super.getName() + '\'' +
+                "faculty='" + faculty + '\'' +
                 '}';
     }
 }

@@ -1,18 +1,18 @@
-import java.util.ArrayList;
-
 
 public class Stack {
 
     private int size;
-    private Object [] stackArray;
+    private Object[] stackArray;
     private int top;
-    private ArrayList blackList=new ArrayList();
+    private BlackList blackList;
 
-    //констуктор, который создает стэк заданного размера
-    public Stack(int size) {
+
+    //конструктор, который создает стэк заданного размера
+    public Stack(int size, BlackList blackList) {
         this.size = size;
         this.stackArray = new Object[size];
         this.top = -1;
+        this.blackList = blackList;
     }
 
     public Stack(int size, Object[] stackArray, int top) {
@@ -51,7 +51,7 @@ public class Stack {
 
 
     public void addElement(Object obj) {
-        if(!checkBL(obj)) {
+        if(!blackList.checkBL(obj)) {
             stackArray[++top] = obj;
             System.out.println(obj);
         }
@@ -74,21 +74,6 @@ public class Stack {
         return obj;
     }
 
-    //проверка обьекта на наличие его в ЧС
-    public boolean checkBL(Object obj) {
-        for (int k = 0; k < blackList.size(); k++) {
-            if (blackList.get(k).equals(obj)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
-    //метод добавления обьекта в блэк-лист
-    public void addToBL (Object obj) {
-        blackList.add(obj);
-
-
-    }
 
 }

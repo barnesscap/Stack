@@ -1,18 +1,13 @@
-public class Worker {
-    private String name;
+public class Worker extends Human {
     private String company;
 
+    public Worker() {
+
+    }
+
     public Worker(String name, String company) {
-        this.name = name;
+        super(name);
         this.company = company;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getCompany() {
@@ -27,25 +22,25 @@ public class Worker {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
         Worker worker = (Worker) o;
 
-        if (!name.equals(worker.name)) return false;
-        return company.equals(worker.company);
+        return company != null ? company.equals(worker.company) : worker.company == null;
     }
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + company.hashCode();
+        int result = super.hashCode();
+        result = 31 * result + (company != null ? company.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "Worker{" +
-                "name='" + name + '\'' +
-                ", company='" + company + '\'' +
+                "name='" + super.getName() + '\'' +
+                "company='" + company + '\'' +
                 '}';
     }
 }
